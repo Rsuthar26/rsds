@@ -8,8 +8,8 @@
 <style>
     /* CSS variables for flexible hero */
     :root {
-        --hero-height: 93vh;       /* hero section height */
-        --hero-width: 200%;        /* hero section width */
+        --hero-height: 80vh;       /* vertical size of hero */
+        --hero-width: 100vw;       /* horizontal size of hero */
         --hero-bg-width: 120%;     /* background image width */
         --hero-bg-height: 100%;    /* background image height */
     }
@@ -49,18 +49,33 @@
     h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
 
     /* Hero */
-    .hero {
+    .hero-container {
+        width: var(--hero-width);
+        height: var(--hero-height);
+        margin: auto;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-bg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--hero-bg-width);
+        height: var(--hero-bg-height);
+        transform: translate(-50%, -50%);
+        background: url('background.jpg') no-repeat center center;
+        background-size: cover;
+        z-index: 0;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: var(--hero-height);
-        width: var(--hero-width); /* flexible width */
+        height: 100%;
         text-align: center;
-        position: relative;
-        margin: auto;
-        background: url('background.jpg') no-repeat center center;
-        background-size: var(--hero-bg-width) var(--hero-bg-height);
     }
     .hero-image {
         width: 220px;
@@ -147,13 +162,16 @@
 </nav>
 
 <!-- Hero -->
-<section class="hero" id="hero">
-    <div class="hero-image">
-        <img src="profile.jpg" alt="Ripal Suthar">
+<section class="hero-container" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-image">
+            <img src="profile.jpg" alt="Ripal Suthar">
+        </div>
+        <h1>Ripal Suthar</h1>
+        <p>Data Scientist | Data Engineer | Data Analyst</p>
+        <button class="btn">Download CV</button>
     </div>
-    <h1>Ripal Suthar</h1>
-    <p>Data Scientist | Data Engineer | Data Analyst</p>
-    <button class="btn">Download CV</button>
 </section>
 
 <!-- About -->
