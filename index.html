@@ -6,17 +6,17 @@
 <title>Professional Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-    /* CSS variables for flexible hero */
+    /* Root variables for easy adjustments */
     :root {
-        --hero-height: 93vh;       /* vertical size of hero */
-        --hero-scale: 2;           /* adjust horizontal visual width (1 = 100%) */
-        --hero-bg-width: 180%;     /* width of background image */
-        --hero-bg-height: 120%;    /* height of background image */
+        --hero-height: 80vh;    /* vertical size of hero */
+        --hero-width: 120vw;    /* horizontal size of hero container */
+        --hero-bg-width: 100%;  /* background image width */
+        --hero-bg-height: 100%; /* background image height */
     }
 
     /* Reset & base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1c1c1e; line-height: 1.6; scroll-behavior: smooth;}
+    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1c1c1e; line-height: 1.6; scroll-behavior: smooth; }
     a { text-decoration: none; color: inherit; }
     button { cursor: pointer; }
 
@@ -44,71 +44,57 @@
     nav ul li a { font-weight: 500; transition: color 0.3s; }
     nav ul li a:hover { color: #0071e3; }
 
-    /* Sections */
-    section { padding: 4rem 2rem; max-width: 1200px; margin: auto; }
-    h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
-
     /* Hero */
-    .hero-container {
+    .hero {
         width: var(--hero-width);
         height: var(--hero-height);
-        position: relative;
-        overflow: hidden;
-        margin: auto;
-    }
-    .hero-bg {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: var(--hero-bg-width);
-        height: var(--hero-bg-height);
-        transform: translate(-50%, -50%);
-        background: url('background.jpg') no-repeat center center;
-        background-size: cover;
-        z-index: 0;
-    }
-    .hero-content {
-        position: relative;
-        z-index: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100%;
         text-align: center;
-    }
-    .hero-image {
-        width: 220px;
-        height: 220px;
-        border-radius: 50%;
+        background: url('background.jpg') no-repeat center center;
+        background-size: var(--hero-bg-width) var(--hero-bg-height);
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
         overflow: hidden;
-        margin-bottom: 1.5rem;
-        border: 5px solid #fff;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     }
-    .hero-image img {
-        width: 100%;
-        height: 100%;
+    .hero img.profile-img {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        border: 4px solid #fff;
         object-fit: cover;
+        margin-bottom: 1rem;
     }
-    .hero h1 { font-size: 3.8rem; margin-bottom: 1rem; font-weight: 700; color: #fff; text-shadow: 2px 2px 12px rgba(0,0,0,0.7); }
-    .hero p { font-size: 1.8rem; color: #fff; margin-bottom: 2rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
-
-    /* Download CV button restored */
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 1px 2px 8px rgba(0,0,0,0.6);
+    }
+    .hero p {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+    }
     .hero .btn {
         background: #fff;
         color: #0071e3;
-        padding: 0.8rem 2rem;       /* original padding */
-        border-radius: 12px;        /* original radius */
+        padding: 0.8rem 2rem;
+        border-radius: 12px;
         border: none;
         font-weight: 600;
-        font-size: 1.1rem;          /* slightly bigger */
-        transition: background 0.3s, transform 0.3s;
+        transition: background 0.3s;
     }
-    .hero .btn:hover {
-        background: #f0f0f0;
-        transform: scale(1.05);
-    }
+    .hero .btn:hover { background: #f0f0f0; }
+
+    /* Sections */
+    section { padding: 4rem 2rem; max-width: 1200px; margin: auto; }
+    h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
 
     /* Skills */
     .skills { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
@@ -156,7 +142,6 @@
         nav ul { flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
         .hero h1 { font-size: 2.5rem; }
         .hero p { font-size: 1.2rem; }
-        .hero-image { width: 150px; height: 150px; }
     }
 </style>
 </head>
@@ -176,16 +161,11 @@
 </nav>
 
 <!-- Hero -->
-<section class="hero-container" id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-        <div class="hero-image">
-            <img src="profile.jpg" alt="Ripal Suthar">
-        </div>
-        <h1>Ripal Suthar</h1>
-        <p>Data Scientist | Data Engineer | Data Analyst</p>
-        <button class="btn">Download CV</button>
-    </div>
+<section class="hero" id="hero">
+    <img src="profile.jpg" alt="Ripal Suthar" class="profile-img">
+    <h1>Ripal Suthar</h1>
+    <p>Data Scientist | Data Engineer | Data Analyst</p>
+    <button class="btn">Download CV</button>
 </section>
 
 <!-- About -->
