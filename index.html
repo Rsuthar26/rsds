@@ -489,84 +489,33 @@
     section { padding: 4rem 2rem; max-width: 1200px; margin: auto; position: relative; }
     section.hero { max-width: 100%; padding: 0; }
     h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; position: relative; }
-    
-    /* Decorative elements for sections */
-    section:not(.hero)::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 4px;
-        background: linear-gradient(90deg, transparent, rgba(0, 113, 227, 0.5), transparent);
-        border-radius: 2px;
-    }
-    
-    /* Decorative corner elements */
-    section:not(.hero)::after {
-        content: '';
-        position: absolute;
-        top: 2rem;
-        right: 2rem;
-        width: 100px;
-        height: 100px;
-        background: radial-gradient(circle at center, rgba(0, 113, 227, 0.05) 0%, transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
-    }
-    
-    body.dark-mode section:not(.hero)::after {
-        background: radial-gradient(circle at center, rgba(0, 113, 227, 0.1) 0%, transparent 70%);
-    }
-    
-    /* Decorative lines for headers */
-    h2::before,
-    h2::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        width: 40px;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(0, 113, 227, 0.3));
-    }
-    
-    h2::before {
-        right: 100%;
-        margin-right: 1rem;
-    }
-    
-    h2::after {
-        left: 100%;
-        margin-left: 1rem;
-        background: linear-gradient(90deg, rgba(0, 113, 227, 0.3), transparent);
-    }
 
     /* Skills */
     .skills { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; position: relative; }
     
-    /* Decorative grid pattern behind skills */
-    .skills::before {
+    /* Subtle wave pattern behind skills - only visible on hover */
+    #skills {
+        position: relative;
+    }
+    
+    #skills::before {
         content: '';
         position: absolute;
-        top: -2rem;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-        height: calc(100% + 4rem);
-        background-image: 
-            linear-gradient(rgba(0, 113, 227, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 113, 227, 0.03) 1px, transparent 1px);
-        background-size: 50px 50px;
-        border-radius: 20px;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        height: 80%;
+        background: radial-gradient(circle at 30% 40%, rgba(0, 113, 227, 0.02) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 60%, rgba(147, 51, 234, 0.02) 0%, transparent 50%);
+        border-radius: 30px;
         pointer-events: none;
         z-index: 0;
     }
     
-    body.dark-mode .skills::before {
-        background-image: 
-            linear-gradient(rgba(0, 113, 227, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 113, 227, 0.05) 1px, transparent 1px);
+    body.dark-mode #skills::before {
+        background: radial-gradient(circle at 30% 40%, rgba(0, 113, 227, 0.04) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 60%, rgba(147, 51, 234, 0.04) 0%, transparent 50%);
     }
     
     .skill { 
