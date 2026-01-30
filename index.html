@@ -3,124 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ripal Suthar Portfolio</title>
+<title>Professional Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* Reset & base */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1c1c1e; line-height: 1.6; scroll-behavior: smooth; transition: background 0.5s, color 0.5s; }
-a { text-decoration: none; color: inherit; }
-button { cursor: pointer; }
+    /* Reset & base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1c1c1e; line-height: 1.6; scroll-behavior: smooth;}
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; }
 
-/* Light/Dark Mode */
-body.dark { background: #1c1c1e; color: #f9f9f9; }
-body.dark .skill, body.dark .project-card, body.dark .timeline-item, body.dark .certificate, body.dark .modal-content { background: #2a2a2a; color: #f9f9f9; }
-body.dark nav { background: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-body.dark footer { color: #bbb; }
+    /* Navbar */
+    nav { position: sticky; top: 0; background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 100; }
+    nav .logo { font-weight: 700; font-size: 1.5rem; background: #0071e3; color: #fff; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border-radius: 50%; cursor: pointer; transition: background 0.3s; }
+    nav .logo:hover { background: #005bb5; }
+    nav ul { display: flex; gap: 1.5rem; list-style: none; }
+    nav ul li a { font-weight: 500; transition: color 0.3s; }
+    nav ul li a:hover { color: #0071e3; }
 
-/* Navbar */
-nav { position: sticky; top: 0; background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 100; transition: background 0.5s, box-shadow 0.5s; }
-nav .logo { font-weight: 700; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
-nav .logo img { width: 60px; height: 60px; border-radius: 50%; transition: all 0.5s; cursor: pointer; }
-nav ul { display: flex; gap: 1.5rem; list-style: none; }
-nav ul li a { font-weight: 500; transition: color 0.3s; }
-nav ul li a:hover { color: #0071e3; }
-.nav-controls { display: flex; gap:1rem; align-items:center; }
+    /* Sections */
+    section { padding: 4rem 2rem; max-width: 1200px; margin: auto; }
+    h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
 
-/* Dark Mode Toggle */
-.toggle-btn { background: #0071e3; color: #fff; padding: 0.4rem 0.8rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; }
-.toggle-btn:hover { background: #005bb5; }
+    /* Hero with scroll photo */
+    .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 80vh; text-align: center; background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover; background-attachment: fixed; }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; font-weight: 700; color: #fff; text-shadow: 1px 2px 8px rgba(0,0,0,0.6); }
+    .hero p { font-size: 1.5rem; color: #fff; margin-bottom: 2rem; text-shadow: 1px 1px 6px rgba(0,0,0,0.6); }
+    .hero .btn { background: #fff; color: #0071e3; padding: 0.8rem 2rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; }
+    .hero .btn:hover { background: #f0f0f0; }
 
-/* Sections */
-section { padding: 4rem 2rem; max-width: 1200px; margin: auto; opacity:0; transform: translateY(40px); transition: opacity 1s, transform 1s; }
-section.visible { opacity:1; transform: translateY(0); }
-h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
+    /* Skills */
+    .skills { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .skill { background: #fff; padding: 1rem 1.5rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); font-weight: 500; transition: transform 0.3s; }
+    .skill:hover { transform: translateY(-4px); }
 
-/* Hero */
-.hero { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 80vh; text-align: center; position: relative; }
-.hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; }
-.hero p { font-size: 1.2rem; color: #555; margin-bottom: 2rem; transition: color 0.5s; }
-.hero .btn { background: linear-gradient(135deg,#0071e3,#00a1ff); color: #fff; padding: 0.8rem 2rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; }
-.hero .btn:hover { background: linear-gradient(135deg,#005bb5,#0077cc); }
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .project-card { background: #fff; border-radius: 20px; padding: 1.5rem; box-shadow: 0 6px 20px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+    .project-card:hover { transform: translateY(-6px); }
+    .project-card h3 { margin-bottom: 0.5rem; }
+    .project-card p { color: #555; margin-bottom: 1rem; flex-grow: 1; }
+    .project-card button { background: #0071e3; color: #fff; padding: 0.6rem 1.2rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; }
+    .project-card button:hover { background: #005bb5; }
 
-/* Hero Profile Image */
-.hero-img { width:150px; height:100px; border-radius:50%; object-fit:cover; margin-bottom:1rem; transition: all 0.7s; border:4px solid #0071e3; cursor:pointer; }
+    /* Modal */
+    .modal { position: fixed; top: 0; left:0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s; z-index: 200; }
+    .modal.active { opacity: 1; visibility: visible; }
+    .modal-content { background: #fff; border-radius: 20px; width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; }
+    .modal-content h3 { margin-bottom: 1rem; }
+    .modal-content iframe { width: 100%; height: 500px; border-radius: 16px; border: none; }
+    .close-btn { position: absolute; top: 1rem; right: 1rem; background: #eee; border: none; font-size: 1.2rem; border-radius: 50%; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; transition: background 0.3s; }
+    .close-btn:hover { background: #ccc; }
 
-/* Skills */
-.skills { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-.skill { background: #fff; padding: 1rem 1.5rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); font-weight: 500; transition: transform 0.3s; }
-.skill:hover { transform: translateY(-4px); }
+    /* Experience */
+    .timeline { display: flex; flex-direction: column; gap: 2rem; }
+    .timeline-item { background: #fff; padding: 1.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .timeline-item h4 { margin-bottom: 0.5rem; }
+    .timeline-item span { font-size: 0.9rem; color: #777; }
 
-/* Projects */
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-.project-card { background: #fff; border-radius: 20px; padding: 1.5rem; box-shadow: 0 6px 20px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
-.project-card:hover { transform: translateY(-6px); }
-.project-card h3 { margin-bottom: 0.5rem; }
-.project-card p { color: #555; margin-bottom: 1rem; flex-grow: 1; transition: color 0.5s; }
-.project-card button { background: linear-gradient(135deg,#0071e3,#00a1ff); color: #fff; padding: 0.6rem 1.2rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; }
-.project-card button:hover { background: linear-gradient(135deg,#005bb5,#0077cc); }
+    /* Certificates */
+    .certificates { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; }
+    .certificate { flex: 0 0 auto; background: #fff; padding: 1rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); min-width: 200px; text-align: center; }
 
-/* Modal */
-.modal { position: fixed; top: 0; left:0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s; z-index: 200; }
-.modal.active { opacity: 1; visibility: visible; }
-.modal-content { background: #fff; border-radius: 20px; width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; transition: all 0.3s; }
-.modal-content h3 { margin-bottom: 1rem; }
-.modal-content iframe { width: 100%; height: 500px; border-radius: 16px; border: none; }
-.close-btn { position: absolute; top: 1rem; right: 1rem; background: #eee; border: none; font-size: 1.2rem; border-radius: 50%; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; transition: background 0.3s; }
-.close-btn:hover { background: #ccc; }
+    /* Contact */
+    .contact form { display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: auto; }
+    .contact input, .contact textarea { padding: 0.8rem 1rem; border-radius: 12px; border: 1px solid #ccc; font-size: 1rem; width: 100%; }
+    .contact button { background: #0071e3; color: #fff; padding: 0.8rem 2rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; width: fit-content; align-self: center; }
+    .contact button:hover { background: #005bb5; }
 
-/* Experience */
-.timeline { display: flex; flex-direction: column; gap: 2rem; }
-.timeline-item { background: #fff; padding: 1.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transition: transform 0.5s; }
-.timeline-item h4 { margin-bottom: 0.5rem; }
-.timeline-item span { font-size: 0.9rem; color: #777; transition: color 0.5s; }
+    /* Footer */
+    footer { text-align: center; padding: 2rem; color: #777; font-size: 0.9rem; }
 
-/* Certificates */
-.certificates { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; }
-.certificate { flex: 0 0 auto; background: #fff; padding: 1rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); min-width: 200px; text-align: center; transition: transform 0.3s; }
-.certificate:hover { transform: translateY(-4px); }
-
-/* Contact */
-.contact form { display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: auto; }
-.contact input, .contact textarea { padding: 0.8rem 1rem; border-radius: 12px; border: 1px solid #ccc; font-size: 1rem; width: 100%; transition: background 0.5s, color 0.5s; }
-.contact button { background: linear-gradient(135deg,#0071e3,#00a1ff); color: #fff; padding: 0.8rem 2rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; width: fit-content; align-self: center; }
-.contact button:hover { background: linear-gradient(135deg,#005bb5,#0077cc); }
-
-/* Footer */
-footer { text-align: center; padding: 2rem; color: #777; font-size: 0.9rem; transition: color 0.5s; }
-
-/* Responsive */
-@media(max-width:768px){
-    nav ul { flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
-    .hero-img { width:120px; height:120px; }
-}
+    @media(max-width:768px){
+        nav ul { flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+        .hero h1 { font-size: 2.5rem; }
+        .hero p { font-size: 1.2rem; }
+    }
 </style>
 </head>
 <body>
 
 <!-- Navbar -->
 <nav>
-    <div class="logo">
-        <img src="profile.jpg" id="profile-img"
-        Ripal Suthar
-    </div>
-    <div class="nav-controls">
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#certificates">Certificates</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="toggle-btn">🌙</button>
-    </div>
+    <div class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">RS</div>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 </nav>
 
 <!-- Hero -->
 <section class="hero" id="hero">
-    <img src="profile.jpg" class="hero-img" id="hero-img" alt="Ripal Suthar">
-    <h1>Ripal Suthar</h1>
+    <h1>Rajvardhan Singh Parmar</h1>
     <p>Data Scientist | Data Engineer | Data Analyst</p>
     <button class="btn">Download CV</button>
 </section>
@@ -236,57 +213,33 @@ footer { text-align: center; padding: 2rem; color: #777; font-size: 0.9rem; tran
 
 <!-- Footer -->
 <footer>
-    &copy; 2026 Ripal Suthar. All rights reserved.
+    &copy; 2026 Rajvardhan Singh Parmar. All rights reserved.
 </footer>
 
 <script>
-// Modal functionality
-const buttons = document.querySelectorAll('[data-modal]');
-const modals = document.querySelectorAll('.modal');
-const closeBtns = document.querySelectorAll('.close-btn');
-buttons.forEach(btn => btn.addEventListener('click', () => {
-    const modal = document.getElementById(btn.dataset.modal);
-    modal.classList.add('active');
-}));
-closeBtns.forEach(btn => btn.addEventListener('click', () => {
-    btn.closest('.modal').classList.remove('active');
-}));
-window.addEventListener('click', e => {
-    if(e.target.classList.contains('modal')) e.target.classList.remove('active');
-});
+    // Modal functionality
+    const buttons = document.querySelectorAll('[data-modal]');
+    const modals = document.querySelectorAll('.modal');
+    const closeBtns = document.querySelectorAll('.close-btn');
 
-// Section scroll animations
-const sections = document.querySelectorAll('section');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add('visible');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = document.getElementById(btn.dataset.modal);
+            modal.classList.add('active');
+        });
     });
-}, {threshold:0.2});
-sections.forEach(section => observer.observe(section));
 
-// Dark mode toggle
-const toggleBtn = document.querySelector('.toggle-btn');
-toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-});
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.closest('.modal').classList.remove('active');
+        });
+    });
 
-// Hero image scroll effect
-const heroImg = document.getElementById('hero-img');
-window.addEventListener('scroll', () => {
-    if(window.scrollY > 100){
-        heroImg.style.width = "50px";
-        heroImg.style.height = "50px";
-        heroImg.style.position = "fixed";
-        heroImg.style.top = "10px";
-        heroImg.style.left = "10px";
-    } else {
-        heroImg.style.width = "150px";
-        heroImg.style.height = "150px";
-        heroImg.style.position = "static";
-    }
-});
-// Click hero image scroll to top
-heroImg.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+    window.addEventListener('click', e => {
+        if(e.target.classList.contains('modal')) {
+            e.target.classList.remove('active');
+        }
+    });
 </script>
 
 </body>
