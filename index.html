@@ -6,6 +6,12 @@
 <title>Professional Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+    /* CSS variables for flexible hero background */
+    :root {
+        --hero-bg-width: 120%;  /* change this to adjust width */
+        --hero-bg-height: 70vh; /* change this to adjust height */
+    }
+
     /* Reset & base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1c1c1e; line-height: 1.6; scroll-behavior: smooth;}
@@ -46,11 +52,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        min-height: 100vh;
+        min-height: var(--hero-bg-height);
         width: 100%;
         text-align: center;
-        background: url('background.jpg') no-repeat center center/cover;
-        background-size: 120% auto; /* wider background */
+        background: url('background.jpg') no-repeat center center;
+        background-size: var(--hero-bg-width) auto;
         background-attachment: fixed;
         position: relative;
     }
