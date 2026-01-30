@@ -586,23 +586,23 @@
     }
     
     .hero .btn {
-        background: rgba(255, 255, 255, 0.25);
+        background: linear-gradient(135deg, rgba(0, 113, 227, 0.9), rgba(0, 91, 181, 0.9));
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
         color: #fff;
         padding: 0.8rem 2rem;
         border-radius: 12px;
-        border: 2px solid rgba(255, 255, 255, 0.5);
+        border: 2px solid rgba(255, 255, 255, 0.3);
         font-weight: 600;
         transition: all 0.3s ease;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 8px 32px rgba(0, 113, 227, 0.4);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
     }
     .hero .btn:hover { 
-        background: rgba(255, 255, 255, 0.35);
-        transform: translateY(-2px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-        border: 2px solid rgba(255, 255, 255, 0.7);
+        background: linear-gradient(135deg, rgba(0, 91, 181, 1), rgba(0, 113, 227, 1));
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 40px rgba(0, 113, 227, 0.6);
+        border: 2px solid rgba(255, 255, 255, 0.5);
     }
 
     /* Sections */
@@ -676,9 +676,103 @@
     /* Modal */
     .modal { position: fixed; top: 0; left:0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s; z-index: 200; }
     .modal.active { opacity: 1; visibility: visible; }
-    .modal-content { background: #fff; border-radius: 20px; width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; }
-    .modal-content h3 { margin-bottom: 1rem; }
-    .modal-content iframe { width: 100%; height: 500px; border-radius: 16px; border: none; }
+    .modal-content { 
+        background: var(--bg-secondary); 
+        border-radius: 20px; 
+        width: 90%; 
+        max-width: 1000px; 
+        max-height: 90vh; 
+        overflow-y: auto; 
+        padding: 2rem; 
+        position: relative;
+        border: 1px solid var(--border-color);
+    }
+    .modal-content h3 { margin-bottom: 0.5rem; color: var(--text-primary); font-size: 1.5rem; }
+    .modal-content p { color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6; }
+    .modal-content strong { color: var(--text-primary); }
+    
+    /* Dashboard Info Tags */
+    .dashboard-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+    .dashboard-info span {
+        background: var(--card-bg);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+    }
+    
+    /* GitHub Project Styling */
+    .github-project {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin-top: 1rem;
+        border: 1px solid var(--border-color);
+    }
+    .project-details h4 {
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+    .project-details ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    .project-details li {
+        color: var(--text-secondary);
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .project-details li:last-child {
+        border-bottom: none;
+    }
+    
+    /* Project Buttons */
+    .project-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .github-btn, .readme-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+    .github-btn {
+        background: rgba(24, 23, 23, 0.9);
+        color: #fff;
+        border: 1px solid #333;
+    }
+    .github-btn:hover {
+        background: rgba(24, 23, 23, 1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .readme-btn {
+        background: rgba(0, 113, 227, 0.1);
+        color: rgba(0, 113, 227, 1);
+        border: 1px solid rgba(0, 113, 227, 0.3);
+    }
+    .readme-btn:hover {
+        background: rgba(0, 113, 227, 0.9);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+    }
+    
+    .modal-content iframe { width: 100%; height: 600px; border-radius: 16px; border: none; margin-top: 1rem; }
     .close-btn { 
         position: absolute; 
         top: 1rem; 
@@ -949,19 +1043,24 @@
     <h2>Projects</h2>
     <div class="projects-grid">
         <div class="project-card">
-            <h3>Sales Dashboard</h3>
-            <p>Interactive sales analytics dashboard using Power BI to track revenue, growth, and KPIs.</p>
+            <h3>📊 Sales Performance Dashboard</h3>
+            <p>Interactive Tableau dashboard analyzing sales trends, revenue patterns, and regional performance metrics. Features dynamic filters, KPI cards, and year-over-year comparisons with real-time data insights.</p>
             <button data-modal="modal1">View Dashboard</button>
         </div>
         <div class="project-card">
-            <h3>Customer Segmentation</h3>
-            <p>K-means clustering project to segment customers based on purchasing behavior.</p>
+            <h3>💼 HR Analytics Dashboard</h3>
+            <p>Comprehensive Power BI dashboard tracking employee metrics, attrition rates, department performance, and workforce demographics. Includes predictive analytics and interactive drill-down capabilities.</p>
             <button data-modal="modal2">View Dashboard</button>
         </div>
         <div class="project-card">
-            <h3>Marketing Analytics</h3>
-            <p>Tableau dashboard analyzing marketing campaign performance and ROI.</p>
+            <h3>🛒 E-Commerce Analytics</h3>
+            <p>Power BI dashboard visualizing customer behavior, product performance, and revenue optimization. Features cohort analysis, customer segmentation, and marketing campaign ROI tracking.</p>
             <button data-modal="modal3">View Dashboard</button>
+        </div>
+        <div class="project-card">
+            <h3>🗄️ SQL Data Analysis Project</h3>
+            <p>Advanced SQL queries for customer database analysis hosted on GitHub. Includes data cleaning, complex joins, window functions, CTEs, and performance optimization techniques with detailed documentation.</p>
+            <button data-modal="modal4">View Project</button>
         </div>
     </div>
 </section>
@@ -970,25 +1069,81 @@
 <div class="modal" id="modal1">
     <div class="modal-content">
         <button class="close-btn">&times;</button>
-        <h3>Sales Dashboard</h3>
-        <p>This interactive dashboard visualizes sales KPIs and trends across multiple regions and products.</p>
-        <iframe src="https://public.tableau.com/views/SampleSuperstore/SalesDashboard" title="Sales Dashboard"></iframe>
+        <h3>📊 Sales Performance Dashboard - Tableau</h3>
+        <p><strong>Tools:</strong> Tableau Public | <strong>Data Source:</strong> Sample Superstore</p>
+        <p>This interactive dashboard provides comprehensive sales analysis with multiple views including geographic distribution, product categories, and time-series trends. Features dynamic filters for region, segment, and date ranges.</p>
+        <div class="dashboard-info">
+            <span>📈 Key Metrics: Revenue, Profit, Growth Rate</span>
+            <span>🎯 Interactive Filters: Region, Category, Time Period</span>
+        </div>
+        <!-- Replace with your actual Tableau Public embed URL -->
+        <iframe src="https://public.tableau.com/views/SampleSuperstore/Overview?:embed=y&:display_count=yes&:showVizHome=no" title="Sales Dashboard"></iframe>
     </div>
 </div>
+
 <div class="modal" id="modal2">
     <div class="modal-content">
         <button class="close-btn">&times;</button>
-        <h3>Customer Segmentation</h3>
-        <p>Cluster analysis of customer purchasing behavior to identify key segments and target strategies.</p>
-        <iframe src="https://plotly.com/~empet/234/" title="Customer Segmentation"></iframe>
+        <h3>💼 HR Analytics Dashboard - Power BI</h3>
+        <p><strong>Tools:</strong> Power BI | <strong>Data Source:</strong> HR Dataset</p>
+        <p>Advanced HR analytics dashboard tracking employee performance, attrition patterns, and workforce demographics. Includes predictive models for employee turnover and department-wise performance metrics with drill-through capabilities.</p>
+        <div class="dashboard-info">
+            <span>👥 Metrics: Headcount, Attrition Rate, Satisfaction Scores</span>
+            <span>🔍 Features: Predictive Analytics, Drill-down Analysis</span>
+        </div>
+        <!-- Replace with your actual Power BI Public embed URL -->
+        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMWE3ZTNkYWItYzk3OS00MWE5LWE3MzItZjQ2MWE4ZTBmNWRiIiwidCI6IjcwYzY3NThhLWY4YmUtNGU0Yi1hMjQ1LWZhNGI4YmI3ZTY0MyJ9" title="HR Analytics Dashboard"></iframe>
     </div>
 </div>
+
 <div class="modal" id="modal3">
     <div class="modal-content">
         <button class="close-btn">&times;</button>
-        <h3>Marketing Analytics</h3>
-        <p>Tableau dashboard analyzing campaign performance and ROI metrics.</p>
-        <iframe src="https://public.tableau.com/views/RegionalSampleWorkbook/MarketingOverview" title="Marketing Analytics"></iframe>
+        <h3>🛒 E-Commerce Analytics - Power BI</h3>
+        <p><strong>Tools:</strong> Power BI | <strong>Data Source:</strong> E-Commerce Transactions</p>
+        <p>Comprehensive e-commerce dashboard analyzing customer behavior, product performance, and revenue optimization. Features include customer segmentation using RFM analysis, product category performance, and marketing campaign effectiveness tracking.</p>
+        <div class="dashboard-info">
+            <span>🛍️ Metrics: Revenue, AOV, Customer Lifetime Value</span>
+            <span>📊 Analysis: Cohort, RFM Segmentation, Campaign ROI</span>
+        </div>
+        <!-- Replace with your actual Power BI Public embed URL -->
+        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYTU0ZDJlYzQtMzVmMC00ZTZmLTllNzMtZjE4MzA2YzIzNjU0IiwidCI6IjcwYzY3NThhLWY4YmUtNGU0Yi1hMjQ1LWZhNGI4YmI3ZTY0MyJ9" title="E-Commerce Analytics"></iframe>
+    </div>
+</div>
+
+<div class="modal" id="modal4">
+    <div class="modal-content">
+        <button class="close-btn">&times;</button>
+        <h3>🗄️ SQL Data Analysis Project - GitHub</h3>
+        <p><strong>Tools:</strong> SQL, PostgreSQL | <strong>Platform:</strong> GitHub</p>
+        <p>Advanced SQL analysis project featuring complex queries, data transformation, and database optimization. Includes comprehensive documentation, query explanations, and performance benchmarks. Project covers joins, subqueries, window functions, CTEs, and stored procedures.</p>
+        <div class="dashboard-info">
+            <span>📝 Topics: Complex Joins, Window Functions, CTEs</span>
+            <span>⚡ Features: Query Optimization, Index Strategies</span>
+        </div>
+        <div class="github-project">
+            <div class="project-details">
+                <h4>Project Highlights:</h4>
+                <ul>
+                    <li>✅ 50+ Complex SQL queries with detailed explanations</li>
+                    <li>✅ Data cleaning and transformation scripts</li>
+                    <li>✅ Performance optimization techniques</li>
+                    <li>✅ Window functions and advanced analytics</li>
+                    <li>✅ Comprehensive README with setup instructions</li>
+                </ul>
+                <div class="project-buttons">
+                    <a href="https://github.com/yourusername/sql-data-analysis" target="_blank" rel="noopener noreferrer" class="github-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                    <a href="https://github.com/yourusername/sql-data-analysis/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="readme-btn">
+                        📖 Read Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
