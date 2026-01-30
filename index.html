@@ -117,6 +117,13 @@
         z-index: 999;
         transition: all 0.3s ease;
         align-items: flex-end;
+        opacity: 1;
+    }
+    
+    /* When not active (closed) - hide on ALL screen sizes */
+    .side-nav:not(.active) {
+        right: -300px;
+        opacity: 0;
     }
     
     /* Backdrop overlay for better readability when hovering */
@@ -179,6 +186,41 @@
     .theme-toggle svg {
         width: 24px;
         height: 24px;
+    }
+    
+    /* Bottom Right Corner Theme Toggle */
+    .theme-toggle-btn {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--card-bg);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 8px 32px var(--shadow-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 998;
+        color: var(--text-primary);
+    }
+    
+    .theme-toggle-btn:hover {
+        transform: scale(1.1) rotate(20deg);
+        background: rgba(0, 113, 227, 0.9);
+        color: #fff;
+        box-shadow: 0 12px 40px rgba(0, 113, 227, 0.4);
+    }
+    
+    .theme-toggle-btn svg {
+        width: 28px;
+        height: 28px;
+        transition: all 0.3s ease;
     }
     
     .side-nav-item span {
@@ -569,13 +611,15 @@
     footer { text-align: center; padding: 2rem; color: #777; font-size: 0.9rem; }
 
     @media(max-width:768px){
-        .side-nav {
-            right: -300px;
-            opacity: 0;
-        }
         .side-nav.active {
-            right: 1rem;
+            right: 2rem;
             opacity: 1;
+        }
+        .theme-toggle-btn {
+            bottom: 1rem;
+            right: 1rem;
+            width: 50px;
+            height: 50px;
         }
         .hero h1 { font-size: 2.5rem; }
         .hero p { font-size: 1.2rem; }
@@ -605,19 +649,10 @@
         </div>
         <span>About</span>
     </a>
-    <a href="#skills" class="side-nav-item">
-        <div class="side-nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-            </svg>
-        </div>
-        <span>Skills</span>
-    </a>
     <a href="#projects" class="side-nav-item">
         <div class="side-nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
             </svg>
         </div>
         <span>Projects</span>
@@ -640,25 +675,6 @@
         </div>
         <span>Certificates</span>
     </a>
-    <button class="side-nav-item theme-toggle" id="themeToggle" type="button">
-        <div class="side-nav-icon">
-            <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg id="moonIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </div>
-        <span>Dark Mode</span>
-    </button>
     <a href="#contact" class="side-nav-item contact-btn">
         <div class="side-nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -669,6 +685,24 @@
         <span>Contact</span>
     </a>
 </div>
+
+<!-- Dark Mode Toggle - Bottom Right Corner -->
+<button class="theme-toggle-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
+    <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg id="moonIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+</button>
 
 <!-- Hero -->
 <section class="hero" id="hero">
@@ -793,41 +827,45 @@
 </footer>
 
 <script>
-    // Side Navigation - Always visible on desktop, toggle on mobile
+    // Side Navigation - Hamburger toggle on ALL screen sizes
     const hamburger = document.getElementById('hamburger');
     const sideNav = document.getElementById('sideNav');
     
-    // Hamburger closes navigation on all devices
-    hamburger.addEventListener('click', () => {
+    // Toggle navigation visibility when hamburger is clicked (works on desktop AND mobile)
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
         hamburger.classList.toggle('active');
         sideNav.classList.toggle('active');
     });
     
-    // Close menu when clicking on a link (only on mobile)
-    document.querySelectorAll('.side-nav-item:not(.theme-toggle)').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                hamburger.classList.remove('active');
-                sideNav.classList.remove('active');
-            }
-        });
-    });
-    
-    // Close menu when clicking outside (only on mobile)
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-            if (!hamburger.contains(e.target) && !sideNav.contains(e.target)) {
-                hamburger.classList.remove('active');
-                sideNav.classList.remove('active');
-            }
+    // Navigation starts visible on desktop, hidden on mobile
+    function initNavigation() {
+        if (window.innerWidth > 768) {
+            // Desktop - nav starts visible (active)
+            sideNav.classList.add('active');
+        } else {
+            // Mobile - nav starts hidden
+            sideNav.classList.remove('active');
+            hamburger.classList.remove('active');
         }
+    }
+    
+    // Initialize on load
+    window.addEventListener('load', initNavigation);
+    
+    // Re-initialize on resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            initNavigation();
+        }, 250);
     });
 
     // Dark Mode Toggle
     const themeToggle = document.getElementById('themeToggle');
     const sunIcon = document.getElementById('sunIcon');
     const moonIcon = document.getElementById('moonIcon');
-    const themeText = themeToggle.querySelector('span');
     
     // Check for saved theme preference or default to 'light'
     const currentTheme = localStorage.getItem('theme') || 'light';
@@ -835,22 +873,20 @@
         document.body.classList.add('dark-mode');
         sunIcon.style.display = 'none';
         moonIcon.style.display = 'block';
-        themeText.textContent = 'Light Mode';
     }
     
     themeToggle.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation();
         document.body.classList.toggle('dark-mode');
         
         if (document.body.classList.contains('dark-mode')) {
             sunIcon.style.display = 'none';
             moonIcon.style.display = 'block';
-            themeText.textContent = 'Light Mode';
             localStorage.setItem('theme', 'dark');
         } else {
             sunIcon.style.display = 'block';
             moonIcon.style.display = 'none';
-            themeText.textContent = 'Dark Mode';
             localStorage.setItem('theme', 'light');
         }
     });
