@@ -617,18 +617,34 @@
         background: var(--card-bg);
         backdrop-filter: blur(10px) saturate(180%);
         -webkit-backdrop-filter: blur(10px) saturate(180%);
-        padding: 1rem 1.5rem; 
+        padding: 0.75rem 1.25rem; 
         border-radius: 16px; 
         box-shadow: 0 8px 32px var(--shadow-color);
         border: 1px solid var(--border-color);
         font-weight: 500; 
         transition: all 0.3s ease;
         color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
     }
+    
+    .skill img {
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+        width: 24px;
+        height: 24px;
+    }
+    
     .skill:hover { 
         transform: translateY(-4px);
         background: var(--card-hover);
         box-shadow: 0 12px 40px var(--shadow-color);
+    }
+    
+    .skill:hover img {
+        transform: scale(1.2) rotate(5deg);
     }
 
     /* Projects */
@@ -1109,14 +1125,38 @@
 <section id="skills">
     <h2>Skills</h2>
     <div class="skills">
-        <div class="skill">Python</div>
-        <div class="skill">SQL</div>
-        <div class="skill">Pandas</div>
-        <div class="skill">NumPy</div>
-        <div class="skill">Power BI</div>
-        <div class="skill">Tableau</div>
-        <div class="skill">ETL Pipelines</div>
-        <div class="skill">Machine Learning</div>
+        <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="24" height="24">
+            <span>Python</span>
+        </div>
+        <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" width="24" height="24">
+            <span>SQL</span>
+        </div>
+        <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" width="24" height="24">
+            <span>Pandas</span>
+        </div>
+        <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" width="24" height="24">
+            <span>NumPy</span>
+        </div>
+        <div class="skill">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" width="24" height="24">
+            <span>Power BI</span>
+        </div>
+        <div class="skill">
+            <img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" alt="Tableau" width="24" height="24">
+            <span>Tableau</span>
+        </div>
+        <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" alt="ETL" width="24" height="24">
+            <span>ETL Pipelines</span>
+        </div>
+        <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="Machine Learning" width="24" height="24">
+            <span>Machine Learning</span>
+        </div>
     </div>
 </section>
 
