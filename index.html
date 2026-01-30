@@ -16,7 +16,7 @@
 
     /* Reset & base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1c1c1e; line-height: 1.6; scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1c1c1e; line-height: 1.6; scroll-behavior: smooth; margin: 0; padding: 0; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
     button { cursor: pointer; }
 
@@ -46,7 +46,7 @@
 
     /* Hero - FIXED */
     .hero {
-        width: var(--hero-width);
+        width: 100vw;
         height: var(--hero-height);
         display: flex;
         flex-direction: column;
@@ -54,9 +54,15 @@
         align-items: center;
         text-align: center;
         background: url('background.jpg') no-repeat center center;
-        background-size: cover; /* This will fill the full width without white spaces */
+        background-size: cover;
         position: relative;
         overflow: hidden;
+        margin: 0;
+        padding: 0;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
     }
     .hero img.profile-img {
         width: 210px;
