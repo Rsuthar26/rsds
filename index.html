@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ripal Suthar Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Reset & base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1c1c1e; line-height: 1.6; scroll-behavior: smooth; transition: background 0.5s, color 0.5s; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; }
+
+/* Light/Dark Mode */
+body.dark { background: #1c1c1e; color: #f9f9f9; }
+body.dark .skill, body.dark .project-card, body.dark .timeline-item, body.dark .certificate, body.dark .modal-content { background: #2a2a2a; color: #f9f9f9; }
+body.dark nav { background: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+body.dark footer { color: #bbb; }
+
+/* Navbar */
+nav { position: sticky; top: 0; background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 100; transition: background 0.5s, box-shadow 0.5s; }
+nav .logo { font-weight: 700; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+nav .logo img { width: 60px; height: 60px; border-radius: 50%; transition: all 0.5s; cursor: pointer; }
+nav ul { display: flex; gap: 1.5rem; list-style: none; }
+nav ul li a { font-weight: 500; transition: color 0.3s; }
+nav ul li a:hover { color: #0071e3; }
+.nav-controls { display: flex; gap:1rem; align-items:center; }
+
+/* Dark Mode Toggle */
+.toggle-btn { background: #0071e3; color: #fff; padding: 0.4rem 0.8rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; }
+.toggle-btn:hover { background: #005bb5; }
+
+/* Sections */
+section { padding: 4rem 2rem; max-width: 1200px; margin: auto; opacity:0; transform: translateY(40px); transition: opacity 1s, transform 1s; }
+section.visible { opacity:1; transform: translateY(0); }
+h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
+
+/* Hero */
+.hero { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 80vh; text-align: center; position: relative; }
+.hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; }
+.hero p { font-size: 1.2rem; color: #555; margin-bottom: 2rem; transition: color 0.5s; }
+.hero .btn { background: linear-gradient(135deg,#0071e3,#00a1ff); color: #fff; padding: 0.8rem 2rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; }
+.hero .btn:hover { background: linear-gradient(135deg,#005bb5,#0077cc); }
+
+/* Hero Profile Image */
+.hero-img { width:150px; height:150px; border-radius:50%; object-fit:cover; margin-bottom:1rem; transition: all 0.5s; border:4px solid #0071e3; cursor:pointer; }
+
+/* Skills */
+.skills { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+.skill { background: #fff; padding: 1rem 1.5rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); font-weight: 500; transition: transform 0.3s; }
+.skill:hover { transform: translateY(-4px); }
+
+/* Projects */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.project-card { background: #fff; border-radius: 20px; padding: 1.5rem; box-shadow: 0 6px 20px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+.project-card:hover { transform: translateY(-6px); }
+.project-card h3 { margin-bottom: 0.5rem; }
+.project-card p { color: #555; margin-bottom: 1rem; flex-grow: 1; transition: color 0.5s; }
+.project-card button { background: linear-gradient(135deg,#0071e3,#00a1ff); color: #fff; padding: 0.6rem 1.2rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; }
+.project-card button:hover { background: linear-gradient(135deg,#005bb5,#0077cc); }
+
+/* Modal */
+.modal { position: fixed; top: 0; left:0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s; z-index: 200; }
+.modal.active { opacity: 1; visibility: visible; }
+.modal-content { background: #fff; border-radius: 20px; width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; transition: all 0.3s; }
+.modal-content h3 { margin-bottom: 1rem; }
+.modal-content iframe { width: 100%; height: 500px; border-radius: 16px; border: none; }
+.close-btn { position: absolute; top: 1rem; right: 1rem; background: #eee; border: none; font-size: 1.2rem; border-radius: 50%; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; transition: background 0.3s; }
+.close-btn:hover { background: #ccc; }
+
+/* Experience */
+.timeline { display: flex; flex-direction: column; gap: 2rem; }
+.timeline-item { background: #fff; padding: 1.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transition: transform 0.5s; }
+.timeline-item h4 { margin-bottom: 0.5rem; }
+.timeline-item span { font-size: 0.9rem; color: #777; transition: color 0.5s; }
+
+/* Certificates */
+.certificates { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; }
+.certificate { flex: 0 0 auto; background: #fff; padding: 1rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); min-width: 200px; text-align: center; transition: transform 0.3s; }
+.certificate:hover { transform: translateY(-4px); }
+
+/* Contact */
+.contact form { display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: auto; }
+.contact input, .contact textarea { padding: 0.8rem 1rem; border-radius: 12px; border: 1px solid #ccc; font-size: 1rem; width: 100%; transition: background 0.5s, color 0.5s; }
+.contact button { background: linear-gradient(135deg,#0071e3,#00a1ff); color: #fff; padding: 0.8rem 2rem; border-radius: 12px; border: none; font-weight: 600; transition: background 0.3s; width: fit-content; align-self: center; }
+.contact button:hover { background: linear-gradient(135deg,#005bb5,#0077cc); }
+
+/* Footer */
+footer { text-align: center; padding: 2rem; color: #777; font-size: 0.9rem; transition: color 0.5s; }
+
+/* Responsive */
+@media(max-width:768px){
+    nav ul { flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+    .hero-img { width:120px; height:120px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+    <div class="logo">
+        <img src="profile.jpg" id="profile-img" alt="Ripal Suthar">
+        Ripal Suthar
+    </div>
+    <div class="nav-controls">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="toggle-btn">🌙</button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+    <img src="profile.jpg" class="hero-img" id="hero-img" alt="Ripal Suthar">
+    <h1>Ripal Suthar</h1>
+    <p>Data Scientist | Data Engineer | Data Analyst</p>
+    <button class="btn">Download CV</button>
+</section>
+
+<!-- About -->
+<section id="about">
+    <h2>About Me</h2>
+    <p style="max-width:700px; margin:auto; text-align:center;">I am a passionate data professional with experience in building dashboards, data pipelines, and machine learning models. I love transforming data into actionable insights and creating impactful visualizations.</p>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+        <div class="skill">Python</div>
+        <div class="skill">SQL</div>
+        <div class="skill">Pandas</div>
+        <div class="skill">NumPy</div>
+        <div class="skill">Power BI</div>
+        <div class="skill">Tableau</div>
+        <div class="skill">ETL Pipelines</div>
+        <div class="skill">Machine Learning</div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+        <div class="project-card">
+            <h3>Sales Dashboard</h3>
+            <p>Interactive sales analytics dashboard using Power BI to track revenue, growth, and KPIs.</p>
+            <button data-modal="modal1">View Dashboard</button>
+        </div>
+        <div class="project-card">
+            <h3>Customer Segmentation</h3>
+            <p>K-means clustering project to segment customers based on purchasing behavior.</p>
+            <button data-modal="modal2">View Dashboard</button>
+        </div>
+        <div class="project-card">
+            <h3>Marketing Analytics</h3>
+            <p>Tableau dashboard analyzing marketing campaign performance and ROI.</p>
+            <button data-modal="modal3">View Dashboard</button>
+        </div>
+    </div>
+</section>
+
+<!-- Modals -->
+<div class="modal" id="modal1">
+    <div class="modal-content">
+        <button class="close-btn">&times;</button>
+        <h3>Sales Dashboard</h3>
+        <p>This interactive dashboard visualizes sales KPIs and trends across multiple regions and products.</p>
+        <iframe src="https://public.tableau.com/views/SampleSuperstore/SalesDashboard" title="Sales Dashboard"></iframe>
+    </div>
+</div>
+<div class="modal" id="modal2">
+    <div class="modal-content">
+        <button class="close-btn">&times;</button>
+        <h3>Customer Segmentation</h3>
+        <p>Cluster analysis of customer purchasing behavior to identify key segments and target strategies.</p>
+        <iframe src="https://plotly.com/~empet/234/" title="Customer Segmentation"></iframe>
+    </div>
+</div>
+<div class="modal" id="modal3">
+    <div class="modal-content">
+        <button class="close-btn">&times;</button>
+        <h3>Marketing Analytics</h3>
+        <p>Tableau dashboard analyzing campaign performance and ROI metrics.</p>
+        <iframe src="https://public.tableau.com/views/RegionalSampleWorkbook/MarketingOverview" title="Marketing Analytics"></iframe>
+    </div>
+</div>
+
+<!-- Experience -->
+<section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <h4>Data Analyst - XYZ Corp</h4>
+            <span>Jan 2022 - Present</span>
+            <p>Designed dashboards, performed data analysis, and automated reporting pipelines using Python and Power BI.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Data Engineer - ABC Ltd</h4>
+            <span>Jun 2020 - Dec 2021</span>
+            <p>Built ETL pipelines, integrated multiple data sources, and optimized database queries for analytics workloads.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Certificates -->
+<section id="certificates">
+    <h2>Certificates</h2>
+    <div class="certificates">
+        <div class="certificate">Power BI Expert - Microsoft</div>
+        <div class="certificate">Data Science Professional - Coursera</div>
+        <div class="certificate">Machine Learning - Udemy</div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact">
+        <form>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    &copy; 2026 Ripal Suthar. All rights reserved.
+</footer>
+
+<script>
+// Modal functionality
+const buttons = document.querySelectorAll('[data-modal]');
+const modals = document.querySelectorAll('.modal');
+const closeBtns = document.querySelectorAll('.close-btn');
+buttons.forEach(btn => btn.addEventListener('click', () => {
+    const modal = document.getElementById(btn.dataset.modal);
+    modal.classList.add('active');
+}));
+closeBtns.forEach(btn => btn.addEventListener('click', () => {
+    btn.closest('.modal').classList.remove('active');
+}));
+window.addEventListener('click', e => {
+    if(e.target.classList.contains('modal')) e.target.classList.remove('active');
+});
+
+// Section scroll animations
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, {threshold:0.2});
+sections.forEach(section => observer.observe(section));
+
+// Dark mode toggle
+const toggleBtn = document.querySelector('.toggle-btn');
+toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+});
+
+// Hero image scroll effect
+const heroImg = document.getElementById('hero-img');
+window.addEventListener('scroll', () => {
+    if(window.scrollY > 100){
+        heroImg.style.width = "50px";
+        heroImg.style.height = "50px";
+        heroImg.style.position = "fixed";
+        heroImg.style.top = "10px";
+        heroImg.style.left = "10px";
+    } else {
+        heroImg.style.width = "150px";
+        heroImg.style.height = "150px";
+        heroImg.style.position = "static";
+    }
+});
+// Click hero image scroll to top
+heroImg.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+
+</body>
+</html>
