@@ -16,6 +16,7 @@
 
     /* Reset & base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { margin: 0; padding: 0; overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1c1c1e; line-height: 1.6; scroll-behavior: smooth; margin: 0; padding: 0; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
     button { cursor: pointer; }
@@ -46,7 +47,8 @@
 
     /* Hero - FIXED */
     .hero {
-        width: 100vw;
+        width: 100%;
+        max-width: 100%;
         height: var(--hero-height);
         display: flex;
         flex-direction: column;
@@ -59,10 +61,6 @@
         overflow: hidden;
         margin: 0;
         padding: 0;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
     }
     .hero img.profile-img {
         width: 210px;
@@ -98,6 +96,7 @@
 
     /* Sections */
     section { padding: 4rem 2rem; max-width: 1200px; margin: auto; }
+    section.hero { max-width: 100%; padding: 0; }
     h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
 
     /* Skills */
@@ -209,7 +208,7 @@
         </div>
         <div class="project-card">
             <h3>Marketing Analytics</h3>
-            <p>Tableau dashboard analyzing marketing campaign performance and ROI.</p>
+            <p>Tableau dashboard analyzing campaign performance and ROI.</p>
             <button data-modal="modal3">View Dashboard</button>
         </div>
     </div>
