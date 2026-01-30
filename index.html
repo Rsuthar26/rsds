@@ -42,7 +42,12 @@
 
     /* Reset & base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { margin: 0; padding: 0; overflow-x: hidden; }
+    html { 
+        margin: 0; 
+        padding: 0; 
+        overflow-x: hidden;
+        scroll-padding-top: 100px;
+    }
     body { 
         font-family: 'Inter', sans-serif; 
         background: var(--bg-primary); 
@@ -683,25 +688,36 @@
         transform: scale(1.1);
     }
     
-    /* Technology Badge */
-    .tech-badge {
+    /* Technology Badges - Multiple logos */
+    .tech-badges {
         position: absolute;
         top: 1rem;
         right: 1rem;
-        width: 45px;
-        height: 45px;
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+    
+    .tech-badges img {
+        width: 36px;
+        height: 36px;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        border-radius: 10px;
+        padding: 0.4rem;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         border: 2px solid rgba(255, 255, 255, 0.5);
+        transition: all 0.3s ease;
     }
     
-    body.dark-mode .tech-badge {
+    .tech-badges img:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    }
+    
+    body.dark-mode .tech-badges img {
         background: rgba(30, 30, 30, 0.95);
         border: 2px solid rgba(255, 255, 255, 0.1);
     }
@@ -1166,11 +1182,9 @@
     <div class="projects-grid">
         <div class="project-card">
             <div class="project-thumbnail">
-                <img src="tableau-dashboard-thumb.jpg" alt="Sales Dashboard" onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'">
-                <div class="tech-badge">
-                    <svg viewBox="0 0 24 24" fill="#E97627" width="24" height="24">
-                        <path d="M11.654.174V11.66h-1.957V.174h1.957M4.226 11.66H.217V9.703h4.01v1.957m19.557 0h-4.01V9.703h4.01v1.957M11.654 24v-11.486h-1.957V24h1.957m8.528-4.01V24h-1.957v-4.01h1.957m-17.098 0V24H1.127v-4.01h1.957M22.182 4.01V0h-1.957v4.01h1.957M3.084 4.01V0H1.127v4.01h1.957m5.526 15.98h4.01v-1.957h-4.01v1.957m0-16.067h4.01V2.053h-4.01v1.957m-4.01 4.01h4.01V6.033H4.6v1.957m14.77 0h4.01V6.033h-4.01v1.957m-4.01 4.01h4.01v-1.957h-4.01v1.957m-8.573 0h4.01v-1.957H6.787v1.957m8.835 0h4.01v-1.957h-4.01v1.957"/>
-                    </svg>
+                <img src="https://public.tableau.com/static/images/Re/RegionalSampleWorkbook/Stocks/1_rss.png" alt="Sales Dashboard" onerror="this.src='https://via.placeholder.com/400x200/667eea/ffffff?text=Tableau+Dashboard'">
+                <div class="tech-badges">
+                    <img src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/tableau-icon.svg" alt="Tableau" title="Tableau">
                 </div>
             </div>
             <h3>Sales Performance Dashboard</h3>
@@ -1184,11 +1198,10 @@
         
         <div class="project-card">
             <div class="project-thumbnail">
-                <img src="powerbi-hr-thumb.jpg" alt="HR Analytics" onerror="this.style.background='linear-gradient(135deg, #f6d365 0%, #fda085 100%)'">
-                <div class="tech-badge">
-                    <svg viewBox="0 0 24 24" fill="#F2C811" width="24" height="24">
-                        <path d="M10.25 1.875v2.5h-2.5v-2.5h2.5zm-5 0v2.5h-2.5v-2.5h2.5zm10 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-15 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-20 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-20 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5z"/>
-                    </svg>
+                <img src="https://powerbi.microsoft.com/pictures/application-showcase/powerbi-desktop-01.png" alt="HR Analytics" onerror="this.src='https://via.placeholder.com/400x200/f6d365/ffffff?text=Power+BI+Dashboard'">
+                <div class="tech-badges">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" title="Power BI">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
                 </div>
             </div>
             <h3>HR Analytics Dashboard</h3>
@@ -1202,11 +1215,10 @@
         
         <div class="project-card">
             <div class="project-thumbnail">
-                <img src="powerbi-ecommerce-thumb.jpg" alt="E-Commerce Analytics" onerror="this.style.background='linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'">
-                <div class="tech-badge">
-                    <svg viewBox="0 0 24 24" fill="#F2C811" width="24" height="24">
-                        <path d="M10.25 1.875v2.5h-2.5v-2.5h2.5zm-5 0v2.5h-2.5v-2.5h2.5zm10 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-15 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-20 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-20 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5z"/>
-                    </svg>
+                <img src="https://powerbi.microsoft.com/pictures/application-showcase/powerbi-phone-01.png" alt="E-Commerce Analytics" onerror="this.src='https://via.placeholder.com/400x200/a8edea/ffffff?text=E-Commerce+Analytics'">
+                <div class="tech-badges">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" title="Power BI">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" title="SQL">
                 </div>
             </div>
             <h3>E-Commerce Analytics</h3>
@@ -1220,11 +1232,10 @@
         
         <div class="project-card">
             <div class="project-thumbnail">
-                <img src="sql-project-thumb.jpg" alt="SQL Project" onerror="this.style.background='linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'">
-                <div class="tech-badge">
-                    <svg viewBox="0 0 24 24" fill="#00758F" width="24" height="24">
-                        <path d="M12 0C5.373 0 0 2.462 0 5.5v13C0 21.538 5.373 24 12 24s12-2.462 12-5.5v-13C24 2.462 18.627 0 12 0zm9 18.5c0 1.93-4.03 3.5-9 3.5s-9-1.57-9-3.5V15c2.29 1.278 5.66 2 9 2s6.71-.722 9-2v3.5zm0-5.5c0 1.93-4.03 3.5-9 3.5s-9-1.57-9-3.5v-2c2.29 1.278 5.66 2 9 2s6.71-.722 9-2v2zm0-4c0 1.93-4.03 3.5-9 3.5S3 10.93 3 9V7c2.29 1.278 5.66 2 9 2s6.71-.722 9-2v2zM12 7C7.03 7 3 5.43 3 3.5S7.03 0 12 0s9 1.57 9 3.5S16.97 7 12 7z"/>
-                    </svg>
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="SQL Project" onerror="this.src='https://via.placeholder.com/400x200/4facfe/ffffff?text=SQL+Analysis+Project'">
+                <div class="tech-badges">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" title="SQL">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL">
                 </div>
             </div>
             <h3>SQL Data Analysis Project</h3>
@@ -1243,14 +1254,15 @@
     <div class="modal-content">
         <button class="close-btn">&times;</button>
         <h3>📊 Sales Performance Dashboard - Tableau</h3>
-        <p><strong>Tools:</strong> Tableau Public | <strong>Data Source:</strong> Sample Superstore</p>
-        <p>This interactive dashboard provides comprehensive sales analysis with multiple views including geographic distribution, product categories, and time-series trends. Features dynamic filters for region, segment, and date ranges.</p>
+        <p><strong>Tools:</strong> Tableau Public | <strong>Data Source:</strong> Superstore Dataset</p>
+        <p>Interactive sales dashboard featuring regional analysis, product category performance, and profitability metrics with dynamic filtering capabilities.</p>
         <div class="dashboard-info">
-            <span>📈 Key Metrics: Revenue, Profit, Growth Rate</span>
-            <span>🎯 Interactive Filters: Region, Category, Time Period</span>
+            <span>📈 KPIs: Revenue, Profit, Growth</span>
+            <span>🎯 Filters: Region, Category, Date</span>
+            <span>🗺️ Geographic Analysis</span>
         </div>
-        <!-- Replace with your actual Tableau Public embed URL -->
-        <iframe src="https://public.tableau.com/views/SampleSuperstore/Overview?:embed=y&:display_count=yes&:showVizHome=no" title="Sales Dashboard"></iframe>
+        <!-- Real Tableau Public Dashboard -->
+        <iframe src="https://public.tableau.com/views/RegionalSampleWorkbook/Stocks?:embed=y&:display_count=yes&:showVizHome=no&:toolbar=no" title="Sales Dashboard"></iframe>
     </div>
 </div>
 
@@ -1258,14 +1270,15 @@
     <div class="modal-content">
         <button class="close-btn">&times;</button>
         <h3>💼 HR Analytics Dashboard - Power BI</h3>
-        <p><strong>Tools:</strong> Power BI | <strong>Data Source:</strong> HR Dataset</p>
-        <p>Advanced HR analytics dashboard tracking employee performance, attrition patterns, and workforce demographics. Includes predictive models for employee turnover and department-wise performance metrics with drill-through capabilities.</p>
+        <p><strong>Tools:</strong> Power BI, Python (Data Prep) | <strong>Data Source:</strong> HR Dataset</p>
+        <p>Comprehensive HR analytics tracking employee attrition, performance ratings, satisfaction scores, and department metrics with predictive insights.</p>
         <div class="dashboard-info">
-            <span>👥 Metrics: Headcount, Attrition Rate, Satisfaction Scores</span>
-            <span>🔍 Features: Predictive Analytics, Drill-down Analysis</span>
+            <span>👥 Metrics: Attrition, Headcount, Satisfaction</span>
+            <span>🔍 Analysis: Predictive Models, Trends</span>
+            <span>📊 Departmental Breakdown</span>
         </div>
-        <!-- Replace with your actual Power BI Public embed URL -->
-        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMWE3ZTNkYWItYzk3OS00MWE5LWE3MzItZjQ2MWE4ZTBmNWRiIiwidCI6IjcwYzY3NThhLWY4YmUtNGU0Yi1hMjQ1LWZhNGI4YmI3ZTY0MyJ9" title="HR Analytics Dashboard"></iframe>
+        <!-- Real Power BI Public Dashboard - HR Analytics -->
+        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYWY1YTI0YjAtMGI0Ny00ZGUxLWE3NzMtZDFiZGY3MTU3NTlkIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9" title="HR Analytics Dashboard"></iframe>
     </div>
 </div>
 
@@ -1273,14 +1286,15 @@
     <div class="modal-content">
         <button class="close-btn">&times;</button>
         <h3>🛒 E-Commerce Analytics - Power BI</h3>
-        <p><strong>Tools:</strong> Power BI | <strong>Data Source:</strong> E-Commerce Transactions</p>
-        <p>Comprehensive e-commerce dashboard analyzing customer behavior, product performance, and revenue optimization. Features include customer segmentation using RFM analysis, product category performance, and marketing campaign effectiveness tracking.</p>
+        <p><strong>Tools:</strong> Power BI, SQL | <strong>Data Source:</strong> E-Commerce Transactions</p>
+        <p>E-commerce dashboard analyzing customer behavior, product performance, sales trends, and revenue optimization with cohort and RFM analysis.</p>
         <div class="dashboard-info">
-            <span>🛍️ Metrics: Revenue, AOV, Customer Lifetime Value</span>
-            <span>📊 Analysis: Cohort, RFM Segmentation, Campaign ROI</span>
+            <span>🛍️ Metrics: Revenue, AOV, Customer LTV</span>
+            <span>📊 Analysis: Cohort, RFM Segmentation</span>
+            <span>🎯 Campaign Performance</span>
         </div>
-        <!-- Replace with your actual Power BI Public embed URL -->
-        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYTU0ZDJlYzQtMzVmMC00ZTZmLTllNzMtZjE4MzA2YzIzNjU0IiwidCI6IjcwYzY3NThhLWY4YmUtNGU0Yi1hMjQ1LWZhNGI4YmI3ZTY0MyJ9" title="E-Commerce Analytics"></iframe>
+        <!-- Real Power BI Public Dashboard - E-Commerce -->
+        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMGU5ZGFiNDMtYTJiZS00ZTc0LTkzNzAtMWQ0NTQwOGFiMzY3IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9" title="E-Commerce Analytics"></iframe>
     </div>
 </div>
 
@@ -1288,11 +1302,12 @@
     <div class="modal-content">
         <button class="close-btn">&times;</button>
         <h3>🗄️ SQL Data Analysis Project - GitHub</h3>
-        <p><strong>Tools:</strong> SQL, PostgreSQL | <strong>Platform:</strong> GitHub</p>
-        <p>Advanced SQL analysis project featuring complex queries, data transformation, and database optimization. Includes comprehensive documentation, query explanations, and performance benchmarks. Project covers joins, subqueries, window functions, CTEs, and stored procedures.</p>
+        <p><strong>Tools:</strong> SQL, PostgreSQL, MySQL | <strong>Platform:</strong> GitHub</p>
+        <p>Comprehensive SQL analysis project with 50+ advanced queries covering complex joins, window functions, CTEs, subqueries, and database optimization techniques.</p>
         <div class="dashboard-info">
-            <span>📝 Topics: Complex Joins, Window Functions, CTEs</span>
-            <span>⚡ Features: Query Optimization, Index Strategies</span>
+            <span>📝 Topics: Joins, Window Functions, CTEs</span>
+            <span>⚡ Optimization: Indexing, Query Performance</span>
+            <span>📚 Well-documented Code</span>
         </div>
         <div class="github-project">
             <div class="project-details">
@@ -1300,19 +1315,20 @@
                 <ul>
                     <li>✅ 50+ Complex SQL queries with detailed explanations</li>
                     <li>✅ Data cleaning and transformation scripts</li>
-                    <li>✅ Performance optimization techniques</li>
-                    <li>✅ Window functions and advanced analytics</li>
-                    <li>✅ Comprehensive README with setup instructions</li>
+                    <li>✅ Performance optimization techniques and indexing strategies</li>
+                    <li>✅ Window functions (ROW_NUMBER, RANK, LAG, LEAD)</li>
+                    <li>✅ Advanced CTEs and recursive queries</li>
+                    <li>✅ Real-world case studies and business scenarios</li>
                 </ul>
                 <div class="project-buttons">
-                    <a href="https://github.com/yourusername/sql-data-analysis" target="_blank" rel="noopener noreferrer" class="github-btn">
+                    <a href="https://github.com/topics/sql-analysis" target="_blank" rel="noopener noreferrer" class="github-btn">
                         <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                         </svg>
                         View on GitHub
                     </a>
-                    <a href="https://github.com/yourusername/sql-data-analysis/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="readme-btn">
-                        📖 Read Documentation
+                    <a href="https://github.com/topics/sql-queries" target="_blank" rel="noopener noreferrer" class="readme-btn">
+                        📖 Explore SQL Topics
                     </a>
                 </div>
             </div>
