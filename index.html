@@ -8,9 +8,10 @@
 <style>
     /* CSS variables for flexible hero */
     :root {
-        --hero-height: 93vh;        /* height of hero section, change as needed */
-        --hero-bg-width: 120%;      /* width of background image, can be % or px */
-        --hero-bg-height: 100%;     /* height of background image, can be % or px */
+        --hero-height: 80vh;       /* hero section height */
+        --hero-width: 100%;        /* hero section width */
+        --hero-bg-width: 120%;     /* background image width */
+        --hero-bg-height: 100%;    /* background image height */
     }
 
     /* Reset & base */
@@ -53,11 +54,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: var(--hero-height); /* flexible hero height */
+        height: var(--hero-height);
+        width: var(--hero-width); /* flexible width */
         text-align: center;
         position: relative;
+        margin: auto;
         background: url('background.jpg') no-repeat center center;
-        background-size: var(--hero-bg-width) var(--hero-bg-height); /* flexible bg size */
+        background-size: var(--hero-bg-width) var(--hero-bg-height);
     }
     .hero-image {
         width: 220px;
