@@ -638,13 +638,70 @@
         backdrop-filter: blur(10px) saturate(180%);
         -webkit-backdrop-filter: blur(10px) saturate(180%);
         border-radius: 20px; 
-        padding: 1.5rem; 
+        padding: 0;
         box-shadow: 0 8px 32px var(--shadow-color);
         border: 1px solid var(--border-color);
         transition: all 0.3s ease;
         display: flex; 
-        flex-direction: column; 
-        justify-content: space-between;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    
+    /* Project Thumbnail */
+    .project-thumbnail {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .project-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .project-card:hover .project-thumbnail img {
+        transform: scale(1.1);
+    }
+    
+    /* Technology Badge */
+    .tech-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    body.dark-mode .tech-badge {
+        background: rgba(30, 30, 30, 0.95);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .project-card h3 { 
+        margin: 1.5rem 1.5rem 0.5rem 1.5rem;
+        color: var(--text-primary);
+        font-size: 1.2rem;
+    }
+    
+    .project-card p { 
+        color: var(--text-secondary);
+        margin: 0 1.5rem 1.5rem 1.5rem;
+        flex-grow: 1;
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
     
     .project-card:hover { 
@@ -652,29 +709,44 @@
         background: var(--card-hover);
         box-shadow: 0 12px 40px var(--shadow-color);
     }
-    
-    .project-card h3 { margin-bottom: 0.5rem; color: var(--text-primary); }
-    .project-card p { color: var(--text-secondary); margin-bottom: 1rem; flex-grow: 1; }
     .project-card button { 
         background: rgba(0, 113, 227, 0.8);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         color: #fff; 
-        padding: 0.6rem 1.2rem; 
-        border-radius: 12px; 
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.75rem 1.5rem; 
+        border-radius: 0 0 20px 20px;
+        border: none;
+        border-top: 1px solid var(--border-color);
         font-weight: 600; 
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px 0 rgba(0, 113, 227, 0.3);
+        box-shadow: none;
+        width: 100%;
+        cursor: pointer;
     }
     .project-card button:hover { 
         background: rgba(0, 91, 181, 0.9);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px 0 rgba(0, 113, 227, 0.4);
+        box-shadow: 0 -4px 20px rgba(0, 113, 227, 0.3) inset;
     }
 
     /* Modal */
-    .modal { position: fixed; top: 0; left:0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s; z-index: 200; }
+    .modal { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background: rgba(0,0,0,0.75); 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        opacity: 0; 
+        visibility: hidden; 
+        transition: opacity 0.3s; 
+        z-index: 9999;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
     .modal.active { opacity: 1; visibility: visible; }
     .modal-content { 
         background: var(--bg-secondary); 
@@ -686,6 +758,8 @@
         padding: 2rem; 
         position: relative;
         border: 1px solid var(--border-color);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        z-index: 10000;
     }
     .modal-content h3 { margin-bottom: 0.5rem; color: var(--text-primary); font-size: 1.5rem; }
     .modal-content p { color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6; }
@@ -1043,23 +1117,58 @@
     <h2>Projects</h2>
     <div class="projects-grid">
         <div class="project-card">
-            <h3>📊 Sales Performance Dashboard</h3>
-            <p>Interactive Tableau dashboard analyzing sales trends, revenue patterns, and regional performance metrics. Features dynamic filters, KPI cards, and year-over-year comparisons with real-time data insights.</p>
+            <div class="project-thumbnail">
+                <img src="tableau-dashboard-thumb.jpg" alt="Sales Dashboard" onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'">
+                <div class="tech-badge">
+                    <svg viewBox="0 0 24 24" fill="#E97627" width="24" height="24">
+                        <path d="M11.654.174V11.66h-1.957V.174h1.957M4.226 11.66H.217V9.703h4.01v1.957m19.557 0h-4.01V9.703h4.01v1.957M11.654 24v-11.486h-1.957V24h1.957m8.528-4.01V24h-1.957v-4.01h1.957m-17.098 0V24H1.127v-4.01h1.957M22.182 4.01V0h-1.957v4.01h1.957M3.084 4.01V0H1.127v4.01h1.957m5.526 15.98h4.01v-1.957h-4.01v1.957m0-16.067h4.01V2.053h-4.01v1.957m-4.01 4.01h4.01V6.033H4.6v1.957m14.77 0h4.01V6.033h-4.01v1.957m-4.01 4.01h4.01v-1.957h-4.01v1.957m-8.573 0h4.01v-1.957H6.787v1.957m8.835 0h4.01v-1.957h-4.01v1.957"/>
+                    </svg>
+                </div>
+            </div>
+            <h3>Sales Performance Dashboard</h3>
+            <p>Interactive Tableau dashboard with sales trends, KPIs, and regional analysis</p>
             <button data-modal="modal1">View Dashboard</button>
         </div>
+        
         <div class="project-card">
-            <h3>💼 HR Analytics Dashboard</h3>
-            <p>Comprehensive Power BI dashboard tracking employee metrics, attrition rates, department performance, and workforce demographics. Includes predictive analytics and interactive drill-down capabilities.</p>
+            <div class="project-thumbnail">
+                <img src="powerbi-hr-thumb.jpg" alt="HR Analytics" onerror="this.style.background='linear-gradient(135deg, #f6d365 0%, #fda085 100%)'">
+                <div class="tech-badge">
+                    <svg viewBox="0 0 24 24" fill="#F2C811" width="24" height="24">
+                        <path d="M10.25 1.875v2.5h-2.5v-2.5h2.5zm-5 0v2.5h-2.5v-2.5h2.5zm10 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-15 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-20 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-20 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5z"/>
+                    </svg>
+                </div>
+            </div>
+            <h3>HR Analytics Dashboard</h3>
+            <p>Power BI dashboard tracking attrition, performance, and workforce metrics</p>
             <button data-modal="modal2">View Dashboard</button>
         </div>
+        
         <div class="project-card">
-            <h3>🛒 E-Commerce Analytics</h3>
-            <p>Power BI dashboard visualizing customer behavior, product performance, and revenue optimization. Features cohort analysis, customer segmentation, and marketing campaign ROI tracking.</p>
+            <div class="project-thumbnail">
+                <img src="powerbi-ecommerce-thumb.jpg" alt="E-Commerce Analytics" onerror="this.style.background='linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'">
+                <div class="tech-badge">
+                    <svg viewBox="0 0 24 24" fill="#F2C811" width="24" height="24">
+                        <path d="M10.25 1.875v2.5h-2.5v-2.5h2.5zm-5 0v2.5h-2.5v-2.5h2.5zm10 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-15 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-20 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm-20 5v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5zm5 0v2.5h-2.5v-2.5h2.5z"/>
+                    </svg>
+                </div>
+            </div>
+            <h3>E-Commerce Analytics</h3>
+            <p>Power BI dashboard with customer behavior and revenue optimization</p>
             <button data-modal="modal3">View Dashboard</button>
         </div>
+        
         <div class="project-card">
-            <h3>🗄️ SQL Data Analysis Project</h3>
-            <p>Advanced SQL queries for customer database analysis hosted on GitHub. Includes data cleaning, complex joins, window functions, CTEs, and performance optimization techniques with detailed documentation.</p>
+            <div class="project-thumbnail">
+                <img src="sql-project-thumb.jpg" alt="SQL Project" onerror="this.style.background='linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'">
+                <div class="tech-badge">
+                    <svg viewBox="0 0 24 24" fill="#00758F" width="24" height="24">
+                        <path d="M12 0C5.373 0 0 2.462 0 5.5v13C0 21.538 5.373 24 12 24s12-2.462 12-5.5v-13C24 2.462 18.627 0 12 0zm9 18.5c0 1.93-4.03 3.5-9 3.5s-9-1.57-9-3.5V15c2.29 1.278 5.66 2 9 2s6.71-.722 9-2v3.5zm0-5.5c0 1.93-4.03 3.5-9 3.5s-9-1.57-9-3.5v-2c2.29 1.278 5.66 2 9 2s6.71-.722 9-2v2zm0-4c0 1.93-4.03 3.5-9 3.5S3 10.93 3 9V7c2.29 1.278 5.66 2 9 2s6.71-.722 9-2v2zM12 7C7.03 7 3 5.43 3 3.5S7.03 0 12 0s9 1.57 9 3.5S16.97 7 12 7z"/>
+                    </svg>
+                </div>
+            </div>
+            <h3>SQL Data Analysis Project</h3>
+            <p>Advanced SQL queries with complex joins, CTEs, and optimization</p>
             <button data-modal="modal4">View Project</button>
         </div>
     </div>
