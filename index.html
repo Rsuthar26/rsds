@@ -6,10 +6,11 @@
 <title>Professional Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-    /* CSS variables for flexible hero background */
+    /* CSS variables for flexible hero */
     :root {
-        --hero-bg-width: 150vw;   /* full width */
-        --hero-bg-height: 100vh;  /* full screen height */
+        --hero-height: 80vh;        /* height of hero section, change as needed */
+        --hero-bg-width: 120%;      /* width of background image, can be % or px */
+        --hero-bg-height: 100%;     /* height of background image, can be % or px */
     }
 
     /* Reset & base */
@@ -52,12 +53,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: var(--hero-bg-width);
-        height: var(--hero-bg-height);
+        height: var(--hero-height); /* flexible hero height */
         text-align: center;
-        background: url('background.jpg') no-repeat center center;
-        background-size: cover;
         position: relative;
+        background: url('background.jpg') no-repeat center center;
+        background-size: var(--hero-bg-width) var(--hero-bg-height); /* flexible bg size */
     }
     .hero-image {
         width: 220px;
