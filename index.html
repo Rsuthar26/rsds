@@ -8,16 +8,53 @@
 <style>
     /* Root variables for easy adjustments */
     :root {
-        --hero-height: 92vh;    /* vertical size of hero */
-        --hero-width: 100vw;    /* horizontal size of hero container - FIXED */
-        --hero-bg-width: cover; /* background image width - FIXED */
-        --hero-bg-height: 100%; /* background image height */
+        --hero-height: 92vh;
+        --hero-width: 100vw;
+        --hero-bg-width: cover;
+        --hero-bg-height: 100%;
+        
+        /* Light mode colors */
+        --bg-primary: #f9f9f9;
+        --bg-secondary: #ffffff;
+        --text-primary: #1c1c1e;
+        --text-secondary: #555;
+        --text-tertiary: #777;
+        --nav-bg: rgba(255, 255, 255, 0.8);
+        --card-bg: rgba(255, 255, 255, 0.7);
+        --card-hover: rgba(255, 255, 255, 0.85);
+        --shadow-color: rgba(31, 38, 135, 0.1);
+        --border-color: rgba(255, 255, 255, 0.18);
+    }
+    
+    /* Dark mode colors */
+    body.dark-mode {
+        --bg-primary: #0a0a0a;
+        --bg-secondary: #1a1a1a;
+        --text-primary: #ffffff;
+        --text-secondary: #b0b0b0;
+        --text-tertiary: #888;
+        --nav-bg: rgba(26, 26, 26, 0.8);
+        --card-bg: rgba(30, 30, 30, 0.7);
+        --card-hover: rgba(40, 40, 40, 0.85);
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --border-color: rgba(255, 255, 255, 0.1);
     }
 
     /* Reset & base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { margin: 0; padding: 0; overflow-x: hidden; }
-    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1c1c1e; line-height: 1.6; scroll-behavior: smooth; margin: 0; padding: 0; padding-top: 82px; overflow-x: hidden; }
+    body { 
+        font-family: 'Inter', sans-serif; 
+        background: var(--bg-primary); 
+        color: var(--text-primary); 
+        line-height: 1.6; 
+        scroll-behavior: smooth; 
+        margin: 0; 
+        padding: 0; 
+        padding-top: 82px; 
+        overflow-x: hidden;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
     a { text-decoration: none; color: inherit; }
     button { cursor: pointer; }
 
@@ -27,15 +64,15 @@
         top: 0; 
         left: 0;
         right: 0;
-        background: rgba(255, 255, 255, 0.8);
+        background: var(--nav-bg);
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
         padding: 1rem 2rem; 
         display: flex; 
         justify-content: space-between; 
         align-items: center; 
-        box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 2px 20px var(--shadow-color);
+        border-bottom: 1px solid var(--border-color);
         z-index: 1000;
         transition: all 0.3s ease;
     }
@@ -82,19 +119,42 @@
         align-items: flex-end;
     }
     
+    /* Backdrop overlay for better readability when hovering */
+    .side-nav::before {
+        content: '';
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 250px;
+        background: linear-gradient(to left, rgba(0, 0, 0, 0.03), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    body.dark-mode .side-nav::before {
+        background: linear-gradient(to left, rgba(255, 255, 255, 0.03), transparent);
+    }
+    
+    .side-nav:hover::before {
+        opacity: 1;
+    }
+    
     .side-nav-item {
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        background: var(--card-bg);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
         padding: 0.8rem;
         border-radius: 12px;
-        border: 1px solid rgba(0, 113, 227, 0.2);
-        box-shadow: 0 4px 15px rgba(0, 113, 227, 0.15);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 8px 32px var(--shadow-color);
         text-decoration: none;
-        color: #1c1c1e;
+        color: var(--text-primary);
         font-weight: 500;
         transition: all 0.3s ease;
         cursor: pointer;
@@ -104,61 +164,81 @@
         position: relative;
     }
     
+    /* Theme toggle button */
+    .theme-toggle {
+        width: 48px;
+        height: 48px;
+        padding: 0.8rem;
+    }
+    
+    .theme-toggle:hover {
+        background: rgba(0, 113, 227, 0.95);
+        color: #fff;
+    }
+    
+    .theme-toggle svg {
+        width: 24px;
+        height: 24px;
+    }
+    
     .side-nav-item span {
         position: absolute;
         right: 56px;
         opacity: 0;
         transform: translateX(20px);
         transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        background: var(--card-bg);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
         padding: 0.8rem 1.2rem;
         border-radius: 12px 0 0 12px;
-        border: 1px solid rgba(0, 113, 227, 0.2);
+        border: 1px solid var(--border-color);
         border-right: none;
-        box-shadow: -4px 0 20px rgba(0, 113, 227, 0.2);
+        box-shadow: -8px 0 32px var(--shadow-color);
         pointer-events: none;
         z-index: -1;
+        color: var(--text-primary);
     }
     
     /* Show text on hover */
     .side-nav-item:hover {
         background: rgba(0, 113, 227, 0.95);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
         color: #fff;
-        box-shadow: 0 6px 20px rgba(0, 113, 227, 0.4);
+        box-shadow: 0 8px 32px rgba(0, 113, 227, 0.4);
         z-index: 1000;
     }
     
     .side-nav-item:hover span {
         opacity: 1;
         transform: translateX(0);
-        color: #1c1c1e;
         z-index: 999;
     }
     
     .side-nav-item.contact-btn {
         background: rgba(0, 113, 227, 0.95);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
         color: #fff;
         font-weight: 600;
+        box-shadow: 0 8px 32px rgba(0, 113, 227, 0.3);
     }
     
     .side-nav-item.contact-btn:hover {
         background: rgba(0, 91, 181, 0.98);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
         transform: scale(1.05);
+        box-shadow: 0 8px 32px rgba(0, 91, 181, 0.5);
     }
     
     .side-nav-item.contact-btn span {
-        background: rgba(0, 113, 227, 0.98);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        background: rgba(0, 113, 227, 0.97);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
         color: #fff;
+        box-shadow: -8px 0 32px rgba(0, 113, 227, 0.3);
     }
     
     .side-nav-icon {
@@ -225,6 +305,49 @@
         margin: 0;
         padding: 0;
     }
+    
+    /* Enhanced background overlay */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 50%, rgba(0, 113, 227, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 40%);
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    /* Animated gradient overlay */
+    .hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, 
+            rgba(0, 113, 227, 0.05) 0%, 
+            transparent 50%, 
+            rgba(147, 51, 234, 0.05) 100%);
+        z-index: 1;
+        pointer-events: none;
+        animation: gradientShift 15s ease infinite;
+    }
+    
+    @keyframes gradientShift {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 0.8; }
+    }
+    
+    .hero > * {
+        position: relative;
+        z-index: 2;
+    }
     .hero img.profile-img {
         width: 210px;
         height: 210px;
@@ -268,43 +391,38 @@
     /* Sections */
     section { padding: 4rem 2rem; max-width: 1200px; margin: auto; }
     section.hero { max-width: 100%; padding: 0; }
-    
-    /* Add right padding to sections to avoid navigation overlap */
-    section:not(.hero) {
-        padding-right: 200px;
-    }
-    
     h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
 
     /* Skills */
     .skills { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
     .skill { 
-        background: rgba(255, 255, 255, 0.7);
+        background: var(--card-bg);
         backdrop-filter: blur(10px) saturate(180%);
         -webkit-backdrop-filter: blur(10px) saturate(180%);
         padding: 1rem 1.5rem; 
         border-radius: 16px; 
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px var(--shadow-color);
+        border: 1px solid var(--border-color);
         font-weight: 500; 
         transition: all 0.3s ease;
+        color: var(--text-primary);
     }
     .skill:hover { 
         transform: translateY(-4px);
-        background: rgba(255, 255, 255, 0.85);
-        box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+        background: var(--card-hover);
+        box-shadow: 0 12px 40px var(--shadow-color);
     }
 
     /* Projects */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
     .project-card { 
-        background: rgba(255, 255, 255, 0.7);
+        background: var(--card-bg);
         backdrop-filter: blur(10px) saturate(180%);
         -webkit-backdrop-filter: blur(10px) saturate(180%);
         border-radius: 20px; 
         padding: 1.5rem; 
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px var(--shadow-color);
+        border: 1px solid var(--border-color);
         transition: all 0.3s ease;
         display: flex; 
         flex-direction: column; 
@@ -312,11 +430,11 @@
     }
     .project-card:hover { 
         transform: translateY(-6px);
-        background: rgba(255, 255, 255, 0.85);
-        box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+        background: var(--card-hover);
+        box-shadow: 0 12px 40px var(--shadow-color);
     }
-    .project-card h3 { margin-bottom: 0.5rem; }
-    .project-card p { color: #555; margin-bottom: 1rem; flex-grow: 1; }
+    .project-card h3 { margin-bottom: 0.5rem; color: var(--text-primary); }
+    .project-card p { color: var(--text-secondary); margin-bottom: 1rem; flex-grow: 1; }
     .project-card button { 
         background: rgba(0, 113, 227, 0.8);
         backdrop-filter: blur(10px);
@@ -368,42 +486,44 @@
     /* Experience */
     .timeline { display: flex; flex-direction: column; gap: 2rem; }
     .timeline-item { 
-        background: rgba(255, 255, 255, 0.7);
+        background: var(--card-bg);
         backdrop-filter: blur(10px) saturate(180%);
         -webkit-backdrop-filter: blur(10px) saturate(180%);
         padding: 1.5rem; 
         border-radius: 16px; 
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px var(--shadow-color);
+        border: 1px solid var(--border-color);
         transition: all 0.3s ease;
     }
     .timeline-item:hover {
         transform: translateX(5px);
-        background: rgba(255, 255, 255, 0.85);
-        box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+        background: var(--card-hover);
+        box-shadow: 0 12px 40px var(--shadow-color);
     }
-    .timeline-item h4 { margin-bottom: 0.5rem; }
-    .timeline-item span { font-size: 0.9rem; color: #777; }
+    .timeline-item h4 { margin-bottom: 0.5rem; color: var(--text-primary); }
+    .timeline-item span { font-size: 0.9rem; color: var(--text-tertiary); }
+    .timeline-item p { color: var(--text-secondary); }
 
     /* Certificates */
     .certificates { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; }
     .certificate { 
         flex: 0 0 auto; 
-        background: rgba(255, 255, 255, 0.7);
+        background: var(--card-bg);
         backdrop-filter: blur(10px) saturate(180%);
         -webkit-backdrop-filter: blur(10px) saturate(180%);
         padding: 1rem; 
         border-radius: 16px; 
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px var(--shadow-color);
+        border: 1px solid var(--border-color);
         min-width: 200px; 
         text-align: center;
         transition: all 0.3s ease;
+        color: var(--text-primary);
     }
     .certificate:hover {
         transform: translateY(-4px);
-        background: rgba(255, 255, 255, 0.85);
-        box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+        background: var(--card-hover);
+        box-shadow: 0 12px 40px var(--shadow-color);
     }
 
     /* Contact */
@@ -456,10 +576,6 @@
         .side-nav.active {
             right: 1rem;
             opacity: 1;
-        }
-        /* Remove extra right padding on mobile */
-        section:not(.hero) {
-            padding-right: 2rem;
         }
         .hero h1 { font-size: 2.5rem; }
         .hero p { font-size: 1.2rem; }
@@ -524,6 +640,25 @@
         </div>
         <span>Certificates</span>
     </a>
+    <button class="side-nav-item theme-toggle" id="themeToggle" type="button">
+        <div class="side-nav-icon">
+            <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg id="moonIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </div>
+        <span>Dark Mode</span>
+    </button>
     <a href="#contact" class="side-nav-item contact-btn">
         <div class="side-nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -658,20 +793,19 @@
 </footer>
 
 <script>
-    // Side Navigation Toggle
+    // Side Navigation - Always visible on desktop, toggle on mobile
     const hamburger = document.getElementById('hamburger');
     const sideNav = document.getElementById('sideNav');
     
-    // Toggle side nav visibility when hamburger is clicked
+    // Hamburger closes navigation on all devices
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         sideNav.classList.toggle('active');
     });
     
-    // Close menu when clicking on a link
-    document.querySelectorAll('.side-nav-item').forEach(link => {
+    // Close menu when clicking on a link (only on mobile)
+    document.querySelectorAll('.side-nav-item:not(.theme-toggle)').forEach(link => {
         link.addEventListener('click', () => {
-            // Don't close on mobile, only remove active states
             if (window.innerWidth <= 768) {
                 hamburger.classList.remove('active');
                 sideNav.classList.remove('active');
@@ -689,8 +823,37 @@
         }
     });
 
-    // Scroll detection - removed as icons should always stay visible
-    // Icons stay on the right, text appears on hover
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const themeText = themeToggle.querySelector('span');
+    
+    // Check for saved theme preference or default to 'light'
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+        themeText.textContent = 'Light Mode';
+    }
+    
+    themeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+            themeText.textContent = 'Light Mode';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+            themeText.textContent = 'Dark Mode';
+            localStorage.setItem('theme', 'light');
+        }
+    });
 
     // Modal functionality
     const buttons = document.querySelectorAll('[data-modal]');
