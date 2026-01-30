@@ -8,8 +8,8 @@
 <style>
     /* CSS variables for flexible hero */
     :root {
-        --hero-height: 93vh;       /* vertical size of hero */
-        --hero-width: 150vw;       /* horizontal size of hero */
+        --hero-height: 80vh;       /* vertical size of hero */
+        --hero-width: 100vw;       /* horizontal size of hero */
         --hero-bg-width: 120%;     /* background image width */
         --hero-bg-height: 100%;    /* background image height */
     }
@@ -93,8 +93,22 @@
     }
     .hero h1 { font-size: 3.8rem; margin-bottom: 1rem; font-weight: 700; color: #fff; text-shadow: 2px 2px 12px rgba(0,0,0,0.7); }
     .hero p { font-size: 1.8rem; color: #fff; margin-bottom: 2rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
-    .hero .btn { background: #fff; color: #0071e3; padding: 1rem 2.5rem; border-radius: 14px; border: none; font-weight: 600; transition: background 0.3s, transform 0.3s; }
-    .hero .btn:hover { background: #f0f0f0; transform: scale(1.05); }
+
+    /* Download CV button restored */
+    .hero .btn {
+        background: #fff;
+        color: #0071e3;
+        padding: 0.8rem 2rem;       /* original padding */
+        border-radius: 12px;        /* original radius */
+        border: none;
+        font-weight: 600;
+        font-size: 1.1rem;          /* slightly bigger */
+        transition: background 0.3s, transform 0.3s;
+    }
+    .hero .btn:hover {
+        background: #f0f0f0;
+        transform: scale(1.05);
+    }
 
     /* Skills */
     .skills { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
