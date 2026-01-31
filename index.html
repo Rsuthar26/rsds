@@ -188,8 +188,8 @@
         visibility: visible;
     }
     
-    /* When not active (closed by hamburger) - hide it */
-    .side-nav:not(.active) {
+    /* When hamburger closes navigation - slide it out */
+    .side-nav.hidden {
         right: -300px;
         opacity: 0;
         visibility: hidden;
@@ -590,49 +590,6 @@
         background: rgba(0, 234, 140, 0.95);
         color: #ffffff;
         border-color: #00ea8c;
-    }
-    
-    /* Professional Subtle Pulsing Glow Animation */
-    @keyframes subtleGlowPulse {
-        0%, 100% {
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            filter: brightness(1);
-        }
-        50% {
-            box-shadow: 0 6px 25px currentColor, 0 0 15px currentColor, 0 6px 20px rgba(0, 0, 0, 0.3);
-            filter: brightness(1.2);
-        }
-    }
-    
-    /* Individual delays for smooth wave effect - left to right */
-    .social-icon:nth-child(1) {
-        animation: subtleGlowPulse 2s ease-in-out 0.5s infinite;
-        color: #181717; /* GitHub black */
-    }
-    
-    .social-icon:nth-child(2) {
-        animation: subtleGlowPulse 2s ease-in-out 0.9s infinite;
-        color: #20c9ff; /* Kaggle blue */
-    }
-    
-    .social-icon:nth-child(3) {
-        animation: subtleGlowPulse 2s ease-in-out 1.3s infinite;
-        color: #0077b5; /* LinkedIn blue */
-    }
-    
-    .social-icon:nth-child(4) {
-        animation: subtleGlowPulse 2s ease-in-out 1.7s infinite;
-        color: #ffa116; /* LeetCode orange */
-    }
-    
-    .social-icon:nth-child(5) {
-        animation: subtleGlowPulse 2s ease-in-out 2.1s infinite;
-        color: #00ea8c; /* HackerRank green */
-    }
-    
-    /* Pause animation on hover */
-    .social-icon:hover {
-        animation-play-state: paused;
     }
     
     .hero .btn {
@@ -1948,7 +1905,7 @@
     <p class="contact-subtitle">Feel free to reach out for collaborations, opportunities, or just a chat!</p>
     
     <div class="contact-grid">
-        <a href="mailto:your.email@example.com" class="contact-card">
+        <a href="/cdn-cgi/l/email-protection#433a2c36316d262e222a2f03263b222e332f266d202c2e" class="contact-card">
             <div class="contact-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -1956,7 +1913,7 @@
                 </svg>
             </div>
             <h4>Email</h4>
-            <p>your.email@example.com</p>
+            <p><span class="__cf_email__" data-cfemail="96eff9e3e4b8f3fbf7fffad6f3eef7fbe6faf3b8f5f9fb">[email&#160;protected]</span></p>
         </a>
         
         <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="contact-card">
@@ -1986,22 +1943,18 @@
     &copy; 2026 Ripal Suthar. All rights reserved.
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Side Navigation - Hamburger toggle on ALL screen sizes
+<script>
+    // Side Navigation - ALWAYS visible, hamburger only closes it
     const hamburger = document.getElementById('hamburger');
     const sideNav = document.getElementById('sideNav');
     
-    // Toggle navigation visibility when hamburger is clicked (works on desktop AND mobile)
+    // Navigation starts VISIBLE - no 'active' class needed
+    // Hamburger toggles 'hidden' class to close/open
     hamburger.addEventListener('click', (e) => {
         e.stopPropagation();
         hamburger.classList.toggle('active');
-        sideNav.classList.toggle('active');
+        sideNav.classList.toggle('hidden');
     });
-    
-    // Navigation ALWAYS visible by default on ALL screen sizes
-    // Hamburger ONLY toggles visibility (close/open)
-    sideNav.classList.add('active');  // Start visible
-    hamburger.classList.remove('active');  // Start as hamburger icon (not X)
 
     // Dark Mode Toggle
     const themeToggle = document.getElementById('themeToggle');
@@ -2045,4 +1998,16 @@
 
     closeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            btn.closest
+            btn.closest('.modal').classList.remove('active');
+        });
+    });
+
+    window.addEventListener('click', e => {
+        if(e.target.classList.contains('modal')) {
+            e.target.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>
