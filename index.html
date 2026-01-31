@@ -2009,5 +2009,20 @@
     });
 </script>
 
+<!-- Force stop loading spinner -->
+<script>
+    window.addEventListener('load', function() {
+        // Force complete page load state
+        setTimeout(function() {
+            document.dispatchEvent(new Event('DOMContentLoaded'));
+            if (document.readyState !== 'complete') {
+                Object.defineProperty(document, 'readyState', {
+                    get: function() { return 'complete'; }
+                });
+            }
+        }, 100);
+    });
+</script>
+
 </body>
 </html>
